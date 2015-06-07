@@ -6,8 +6,11 @@
 <div class="" data-content="leido">
     <ul class="nom nol nop sidelist active pdd1">
     <?php while($popular_views->have_posts()) : $popular_views->the_post(); ?>
-        <li class="block ribbon <?php echo md_get_category_class( get_the_ID() ) ?>">
-            <a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ) ?>"><?php the_title() ?></a>
+        <li class="block <?php echo md_get_category_class( get_the_ID() ) ?>">
+            <a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ) ?>">
+                <?php if(has_post_thumbnail()) { the_post_thumbnail('thumbnail'); } ?>
+                <div><?php the_title() ?></div>
+            </a>
         </li>
     <?php endwhile; ?>
     </ul>
@@ -16,8 +19,11 @@
 <div class="" data-content="comentado">
     <ul class="nom nol nop sidelist pdd1">
     <?php while($popular_comments->have_posts()) : $popular_comments->the_post(); ?>
-        <li class="block ribbon <?php echo md_get_category_class( get_the_ID() ) ?>">
-            <a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ) ?>"><?php the_title() ?></a>
+        <li class="block <?php echo md_get_category_class( get_the_ID() ) ?>">
+            <a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ) ?>">
+                <?php if(has_post_thumbnail()) { the_post_thumbnail('thumbnail'); } ?>
+                <div><?php the_title() ?></div>
+            </a>
         </li>
     <?php endwhile; ?>
     </ul>

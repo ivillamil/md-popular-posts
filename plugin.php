@@ -83,3 +83,14 @@ function md_get_category_class( $post_id ) {
 function md_get_cat_slug( $cat ) {
     return $cat->slug;
 }
+
+
+function minima_custom_order_posts( $query ) {
+    if ( $query->is_archive() && isset( $_GET['orderby'] ) && $_GET['orderby'] == 'popularity' ) {
+        $query->set( 'meta_key', '_md_visits' );
+        $query->set( 'orderby', 'meta_value' );
+        $query->set( 'order', 'DESC' );
+        return;
+    }
+}
+add_action( 'pre_get_posts', 'minima_custom_order_posts', 1 );
